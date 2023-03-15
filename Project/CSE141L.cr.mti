@@ -1,0 +1,45 @@
+C:/Users/18583/Desktop/CSE/LUT.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/LUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module LUT
+
+Top level modules:
+	LUT
+
+} {} {}} C:/Users/18583/Desktop/CSE/DataMem.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/DataMem.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DataMem
+
+Top level modules:
+	DataMem
+
+} {} {}} C:/Users/18583/Desktop/CSE/ALU.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/ALU.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package ALU_sv_unit
+-- Importing package Definitions
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} C:/Users/18583/Desktop/CSE/RegFile.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/RegFile.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module RegFile
+
+Top level modules:
+	RegFile
+
+} {} {}} C:/Users/18583/Desktop/CSE/Accumulator.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/Accumulator.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Accumulator
+
+Top level modules:
+	Accumulator
+
+} {} {}} C:/Users/18583/Desktop/CSE/Definitions.sv {1 {vlog -work work -sv -stats=none C:/Users/18583/Desktop/CSE/Definitions.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package Definitions
+
+Top level modules:
+	--none--
+
+} {} {}}
