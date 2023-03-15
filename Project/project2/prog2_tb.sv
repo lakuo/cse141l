@@ -52,8 +52,8 @@ initial begin
     flip2[i] = $random;	   // 'b0;
 	d2_bad[i] = d2_bad1[i] ^ (1'b1<<flip2[i]);
 // if flip2[5:4]==0 && flip2[3:0]==flip, then flip2 undoes flip, so no error
-	DUT.dm1.core[31+2*i] = {d2_bad[i][15:8]};
-    DUT.dm1.core[30+2*i] = {d2_bad[i][ 7:0]};
+	DUT.DM1.Core[31+2*i] = {d2_bad[i][15:8]};
+    DUT.DM1.Core[30+2*i] = {d2_bad[i][ 7:0]};
   end
   #10ns req   = 1;
   #10ns req   = 0;
@@ -63,39 +63,39 @@ initial begin
   $display();
   for(int i=0; i<15; i++) begin
     $displayb({5'b0,d2_in[i]});
-    $writeb  (DUT.dm1.core[1+2*i]);
-    $displayb(DUT.dm1.core[0+2*i]);
+	  $writeb  (DUT.DM1.Core[1+2*i]);
+	  $displayb(DUT.DM1.Core[0+2*i]);
     if(flip2[i][5:4]) begin :sgl_err                           // single error scenario
       $display("single error injected, expecting MSBs of output = 2'b01");
-      if({5'b01000,d2_in[i]}=={DUT.dm1.core[1+2*i],DUT.dm1.core[0+2*i]}) begin
+	    if({5'b01000,d2_in[i]}=={DUT.DM1.Core[1+2*i],DUT.DM1.Core[0+2*i]}) begin
 	    $display("we have a match");
 		score2++;
 	  end
 	  else
 	    $display("erroneous output");
-	  $display("expected %b, got %b",{5'b01000,d2_in[i]},{DUT.dm1.core[1+2*i],DUT.dm1.core[0+2*i]});
+	    $display("expected %b, got %b",{5'b01000,d2_in[i]},{DUT.DM1.Core[1+2*i],DUT.DM1.Core[0+2*i]});
 	end	 :sgl_err
 
     else if(flip2[i][3:0]==flip[i]) begin :no_err       // zero error scenario: flip2 undoes flip
       $display("no errors injected, expecting MSBs of output = 2'b00");
-      if({5'b00000,d2_in[i]}=={DUT.dm1.core[1+2*i],DUT.dm1.core[0+2*i]}) begin
+	    if({5'b00000,d2_in[i]}=={DUT.DM1.Core[1+2*i],DUT.DM1.Core[0+2*i]}) begin
 	    $display("we have a match");
 		score2++;
 	  end
 	  else
 	    $display("erroneous output");
-	  $display("expected %b, got %b",{5'b00000,d2_in[i]},{DUT.dm1.core[1+2*i],DUT.dm1.core[0+2*i]});
+	    $display("expected %b, got %b",{5'b00000,d2_in[i]},{DUT.DM1.Core[1+2*i],DUT.DM1.Core[0+2*i]});
     end	:no_err
 
 	else begin :dbl_err									// two-error scenario; time to give up and raise the white flag
 	  $display("two errors injected, expecting MSB of output = 1'b1");
-      if(DUT.dm1.core[1+2*i][7]==1'b1) begin		   // test for MSB = 1 (two error flag)
+		if(DUT.DM1.Core[1+2*i][7]==1'b1) begin		   // test for MSB = 1 (two error flag)
 	    $display("we have a match");
 		score2++;
 	  end
 	  else
 	    $display("erroneous output");
-	  $display("expected 1???????????????, got %b",{DUT.dm1.core[1+2*i],DUT.dm1.core[0+2*i]});
+		$display("expected 1???????????????, got %b",{DUT.DM1.Core[1+2*i],DUT.DM1.Core[0+2*i]});
     end :dbl_err
     case2++;
 	$display("flip positions = %b %b",flip2[i],flip[i]);
