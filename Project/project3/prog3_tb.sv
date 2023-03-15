@@ -18,17 +18,22 @@ logic[  7:0] mat_str[32];      // message string parsed into bytes
 // your device goes here
 // explicitly list ports if your names differ from test bench's
 top_level DUT(.clk, start(req),.ack(done));	               // replace "proc" with the name of your top level module
+// TopLevel DUT(.Clk (clk), 
+// 	.Start (req), 
+// 	.Ack (done),
+// 	.Reset (req)
+// );
 
 initial begin
 // program 3
 // pattern we are looking for; experiment w/ various values
   pat = {5'b0000,3'b000};//{5'b10101,3'b000};//{$random,3'b000};
   str2 = 0;
-  DUT.dm1.core[32] = pat;
+  DUT.DM1.Core[32] = pat;
   for(int i=0; i<32; i++) begin
 // search field; experiment w/ various vales
     mat_str[i] = 8'b00000000;//8'b01010101;// $random;
-	DUT.dm1.core[i] = mat_str[i];   
+	DUT.DM1.Core[i] = mat_str[i];   
 	str2 = (str2<<8)+mat_str[i];
   end
   ctb = 0;
@@ -53,9 +58,9 @@ initial begin
   $display();
   $display("start program 3");
   $display();
-  $display("number of patterns w/o byte crossing    = %d %d",ctb,DUT.dm1.core[33]);   //160 max
-  $display("number of bytes w/ at least one pattern = %d %d",cto,DUT.dm1.core[34]);   // 32 max
-  $display("number of patterns w/ byte crossing     = %d %d",cts,DUT.dm1.core[35]);   //253 max
+  $display("number of patterns w/o byte crossing    = %d %d",ctb,DUT.DM1.Core[33]);   //160 max
+  $display("number of bytes w/ at least one pattern = %d %d",cto,DUT.DM1.Core[34]);   // 32 max
+  $display("number of patterns w/ byte crossing     = %d %d",cts,DUT.DM1.Core[35]);   //253 max
   #10ns $stop;
 end
 
