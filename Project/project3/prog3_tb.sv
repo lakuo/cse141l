@@ -9,7 +9,7 @@ wire  done;		    	         // ack -- from DUT -- done w/ program
 // program 3-specific variables
 logic[  7:0] cto,		       // how many bytes hold the pattern? (32 max)
              cts,		       // how many patterns in the whole string? (253 max)
-		     ctb;		       // how many patterns fit inside any byte? (160 max)
+		         ctb;		       // how many patterns fit inside any byte? (160 max)
 logic        ctp;		       // flags occurrence of patern in a given byte
 logic[  4:0] pat;              // pattern to search for
 logic[255:0] str2; 	           // message string
@@ -21,7 +21,7 @@ logic[  7:0] mat_str[32];      // message string parsed into bytes
 // replace "proc" with the name of your top level module
 TopLevel DUT(.Clk (clk), 
 	.Reset (req), 
-	.Ack (done),
+	.Ack (done)
 );
 
 initial begin
