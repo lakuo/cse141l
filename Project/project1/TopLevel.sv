@@ -56,7 +56,6 @@ wire [4:0] op_mnemonic;
 /* ---- modeules unit instanciation ---- */
 ProgCtr PC1 ( // The PC Module
   .Reset      (Reset),  
-  .Start      (Start),
   .clk        (Clk),
   .jmp_flag   (Ctrl1_PC_Jmp_Flag),
   .beq_flag   (Ctrl1_PC_Beq_Flag),

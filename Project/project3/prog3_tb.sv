@@ -20,9 +20,8 @@ logic[  7:0] mat_str[32];      // message string parsed into bytes
 
 // replace "proc" with the name of your top level module
 TopLevel DUT(.Clk (clk), 
-	.Start (req), 
+	.Reset (req), 
 	.Ack (done),
-	.Reset (req)
 );
 
 initial begin

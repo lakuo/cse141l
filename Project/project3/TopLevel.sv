@@ -1,6 +1,5 @@
 module TopLevel(
   input        Reset,      // init/reset, active high
-               Start,      // start next program
                Clk,        // clock -- posedge used inside design
   output logic Ack         // done flag from DUT
 );
@@ -55,8 +54,7 @@ wire [4:0] op_mnemonic;
 
 /* ---- modeules unit instanciation ---- */
 ProgCtr PC1 ( // The PC Module
-  .Reset      (Reset),  
-  .Start      (Start),
+  .Reset      (Reset),
   .clk        (Clk),
   .jmp_flag   (Ctrl1_PC_Jmp_Flag),
   .beq_flag   (Ctrl1_PC_Beq_Flag),
