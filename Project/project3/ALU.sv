@@ -21,13 +21,13 @@ op_mne op_mnemonic;
 always_comb begin
   Out = 0; // No Op = default
   case(OP)
+    ADD   : Out = InputA + InputB;        // (4 ) add 
+    CMP   : Out = InputA == InputB;       // (7 ) comparison
+	  CMP_LS: Out = InputA < InputB;
     AND   : Out = InputA & InputB;        // (0 ) bitwise AND
     ORR   : Out = InputA | InputB;        // (1 ) bitwise OR
     XOR_B : Out = InputA ^ InputB;        // (2 ) bitwise XOR
     XOR_G : Out = ^InputA;                // (3 ) global (reduction) XOR
-    ADD   : Out = InputA + InputB;        // (4 ) add 
-    CMP   : Out = InputA == InputB;       // (7 ) comparison
-	 CMP_LS: Out = InputA < InputB;
     SHL   : Out = {InputA[6:0], 1'b0};    // (12) logical shift left
     SHR   : Out = {1'b0, InputA[7:1]};    // (13) logical shift right
 

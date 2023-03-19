@@ -54,17 +54,17 @@ wire [4:0] op_mnemonic;
 
 /* ---- modeules unit instanciation ---- */
 ProgCtr PC1 ( // The PC Module
-  .Reset      (Reset),
-  .clk        (Clk),
-  .jmp_flag   (Ctrl1_PC_Jmp_Flag),
-  .beq_flag   (Ctrl1_PC_Beq_Flag),
-  .Target     (LUT1_Target_out),
+  .Reset      (Reset), 
+  .clk        (Clk), 
+  .jmp_flag   (Ctrl1_PC_Jmp_Flag), 
+  .beq_flag   (Ctrl1_PC_Beq_Flag), 
+  .Target     (LUT1_Target_out), 
   .ProgCtr    (PC1_ProgCtr_out)
 );
 
 
 InstROM IR1 (
-	.InstAddress(PC1_ProgCtr_out),
+	.InstAddress(PC1_ProgCtr_out), 
 	.InstOut(IR1_InstOut_out)
 
 );
@@ -75,7 +75,7 @@ LUT LUT1( // The LUT Module (to enable branching, i.e. jumping)
   .clk      (Clk), 
   .Reset    (Reset), 
   .Write_En (Ctrl1_LUT_Write_En), 
-  .Load_Hi  (Ctrl1_LUT_Load_Hi),
+  .Load_Hi  (Ctrl1_LUT_Load_Hi), 
   .Imm_in   (IR1_InstOut_out[3:0]),   // Immediate input directly from the 9-bit insn Opcode 
   .Acc_in   (Acc1_DataOut_out),       // Accumulator input  [7:0]
   .Target   (LUT1_Target_out)
@@ -85,14 +85,14 @@ Accumulator Accumulator1(
   .clk      (Clk), 
   .Reset    (Reset), 
   .Write_En (Ctrl1_Acc_Write_En), 
-  .From_Reg (Ctrl1_Acc_From_Reg),
-  .From_Imm (Ctrl1_Acc_From_Imm),
-  .From_ALU (Ctrl1_Acc_From_ALU),
-  .Load_Hi  (Ctrl1_Acc_Load_Hi),
-  .RegInput (RF1_DataOut_out),   
-  .ALUInput (ALU1_Out_out),
-  .Imm_in   (IR1_InstOut_out[3:0]),
-  .DataOut	(Acc1_DataOut_out)	
+  .From_Reg (Ctrl1_Acc_From_Reg), 
+  .From_Imm (Ctrl1_Acc_From_Imm), 
+  .From_ALU (Ctrl1_Acc_From_ALU), 
+  .Load_Hi  (Ctrl1_Acc_Load_Hi), 
+  .RegInput (RF1_DataOut_out), 
+  .ALUInput (ALU1_Out_out), 
+  .Imm_in   (IR1_InstOut_out[3:0]), 
+  .DataOut	(Acc1_DataOut_out)
 );
 
 RegFile RF1 (
@@ -127,23 +127,23 @@ DataMem DM1(
 );
 
 Ctrl Ctrl1 ( // Control decoder
-  .Instruction    (IR1_InstOut_out),
-  .AccInput			(Acc1_DataOut_out),
-  .PC_Jmp_Flag    (Ctrl1_PC_Jmp_Flag),	   
-  .PC_Beq_Flag    (Ctrl1_PC_Beq_Flag),
-  .LUT_Write_En   (Ctrl1_LUT_Write_En),  	 
-  .LUT_Read_En    (Ctrl1_LUT_Read_En),
-  .LUT_Load_Hi   (Ctrl1_LUT_Load_Hi),  
-  .Reg_Write_En   (Ctrl1_Reg_Write_En),   
-  .Reg_From_ALU   (Ctrl1_Reg_From_ALU),  
-  .Reg_From_Mem   (Ctrl1_Reg_From_Mem),  
-  .Reg_From_Acc   (Ctrl1_Reg_From_Acc),  
-  .Acc_Write_En   (Ctrl1_Acc_Write_En),     
-  .Acc_From_Reg   (Ctrl1_Acc_From_Reg),  
-  .Acc_From_ALU   (Ctrl1_Acc_From_ALU),  
-  .Acc_From_Imm   (Ctrl1_Acc_From_Imm),  
-  .Acc_Load_Hi    (Ctrl1_Acc_Load_Hi),  
-  .Mem_Write_En   (Ctrl1_Mem_Write_En),    
+  .Instruction    (IR1_InstOut_out), 
+  .AccInput			  (Acc1_DataOut_out), 
+  .PC_Jmp_Flag    (Ctrl1_PC_Jmp_Flag), 
+  .PC_Beq_Flag    (Ctrl1_PC_Beq_Flag), 
+  .LUT_Write_En   (Ctrl1_LUT_Write_En), 
+  .LUT_Read_En    (Ctrl1_LUT_Read_En), 
+  .LUT_Load_Hi    (Ctrl1_LUT_Load_Hi), 
+  .Reg_Write_En   (Ctrl1_Reg_Write_En), 
+  .Reg_From_ALU   (Ctrl1_Reg_From_ALU), 
+  .Reg_From_Mem   (Ctrl1_Reg_From_Mem), 
+  .Reg_From_Acc   (Ctrl1_Reg_From_Acc), 
+  .Acc_Write_En   (Ctrl1_Acc_Write_En), 
+  .Acc_From_Reg   (Ctrl1_Acc_From_Reg), 
+  .Acc_From_ALU   (Ctrl1_Acc_From_ALU), 
+  .Acc_From_Imm   (Ctrl1_Acc_From_Imm), 
+  .Acc_Load_Hi    (Ctrl1_Acc_Load_Hi), 
+  .Mem_Write_En   (Ctrl1_Mem_Write_En), 
   .Ack            (Ack),		    
   .ALU_Opcode     (Ctrl1_ALU_Opcode),
   .op_mnemonic    (op_mnemonic)
