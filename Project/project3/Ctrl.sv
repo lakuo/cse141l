@@ -12,7 +12,7 @@ module Ctrl (
                 Reg_From_ALU,
                 Reg_From_Mem,
                 Reg_From_Acc,
-                Acc_Write_En,        // Accumumulator control
+                Acc_Write_En,        // Accumulator control
                 Acc_From_Reg,
                 Acc_From_ALU,
                 Acc_From_Imm,
