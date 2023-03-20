@@ -40,14 +40,14 @@ always_comb begin
     XOR_B:      begin ALU_Opcode = 5'b00010;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     XOR_G:      begin ALU_Opcode = 5'b00011;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     ADD:        begin ALU_Opcode = 5'b00100;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
+    CMP:        begin ALU_Opcode = 5'b00111;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
+	  CMP_LS:     begin ALU_Opcode = 5'b01011;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
+    LSL:        begin ALU_Opcode = 5'b01100;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
+    LSR:        begin ALU_Opcode = 5'b01101;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
 	  STR:        begin                                 Mem_Write_En = 1;                     end
     LDR:        begin                                 Reg_Write_En = 1;  Reg_From_Mem = 1;  end
-    CMP:        begin ALU_Opcode = 5'b00111;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
     STA:        begin                                 Reg_Write_En = 1;  Reg_From_Acc = 1;  end
     LDA:        begin                                 Acc_Write_En = 1;  Acc_From_Reg = 1;  end
-	  CMP_LS:     begin ALU_Opcode = 5'b01011;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
-    SHL:        begin ALU_Opcode = 5'b01100;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
-    SHR:        begin ALU_Opcode = 5'b01101;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     SET_H:      begin Acc_Load_Hi = 1;                Acc_Write_En = 1;  Acc_From_Imm = 1;  end
     SET_L:      begin Acc_Load_Hi = 0;                Acc_Write_En = 1;  Acc_From_Imm = 1;  end
     LD_LUT_H:   begin LUT_Load_Hi = 1;                LUT_Write_En = 1;                     end
