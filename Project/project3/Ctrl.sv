@@ -1,42 +1,37 @@
-
 import Definitions::*;
 
-
 module Ctrl (
-  input  [8:0] Instruction,    		// machine code input
-  input  [7:0] AccInput,					// Acculator for branch
-                               
-  output logic  PC_Jmp_Flag,			// PC Control
+  input  [8:0] Instruction,          // machine code input
+  input  [7:0] AccInput,             // Accumulator for branch
+  output logic  PC_Jmp_Flag,         // PC Control
                 PC_Beq_Flag,
-                LUT_Write_En,  	  // LUT control
+                LUT_Write_En,        // LUT control
                 LUT_Read_En,
-                LUT_Load_Hi,  
-                Reg_Write_En,   	// RegFile control
+                LUT_Load_Hi,
+                Reg_Write_En,        // RegFile control
                 Reg_From_ALU,
                 Reg_From_Mem,
                 Reg_From_Acc,
-                Acc_Write_En,	    // Accumulator control
+                Acc_Write_En,        // Accumumulator control
                 Acc_From_Reg,
                 Acc_From_ALU,
                 Acc_From_Imm,
                 Acc_Load_Hi,
-                Mem_Write_En,     // Mem control
-                Ack,      			  // DONE flag
+                Mem_Write_En,        // Mem control
+                Ack,                 // DONE flag
   output logic [4:0] ALU_Opcode,
   output logic [4:0] op_mnemonic
-  // output op_mne op_mnemonic
 );
 
 task zero_init_flags;  // initialize all control flags to zero
-  PC_Jmp_Flag = 0;	PC_Beq_Flag = 0;
+  PC_Jmp_Flag = 0;  PC_Beq_Flag = 0;
   LUT_Write_En = 0; LUT_Read_En = 0; LUT_Load_Hi = 0;
   Reg_Write_En = 0; Reg_From_ALU = 0; Reg_From_Mem = 0; Reg_From_Acc = 0;
-	Acc_Write_En = 0; Acc_From_Reg = 0; Acc_From_ALU = 0; Acc_From_Imm = 0; Acc_Load_Hi = 0;
-	Mem_Write_En = 0; Ack = &Instruction; ALU_Opcode = 5'b0;
+  Acc_Write_En = 0; Acc_From_Reg = 0; Acc_From_ALU = 0; Acc_From_Imm = 0; Acc_Load_Hi = 0;
+  Mem_Write_En = 0; Ack = &Instruction; ALU_Opcode = 5'b0;
 endtask
 
-always_comb begin		
-   			  
+always_comb begin
   zero_init_flags;
 
   case(Instruction[8:4])
@@ -62,9 +57,7 @@ always_comb begin
     HLT:        begin Ack = 1;                                                              end
     default: zero_init_flags; 
   endcase
-  
 end
-
 
 `ifndef __ICARUS__
 always_comb
