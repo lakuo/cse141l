@@ -1,21 +1,18 @@
 import os.path
 
-
 # Define operation codes (opcode) for each assembly instruction
 OPS = {
-    "AND": '00000', "ORR": '00001', "XOR_B": '00010', "XOR_G": '00011',
-    "ADD": '00100', "STR": '00101', "LDR": '00110', "CMP": '00111',
-    "STA": '01000', "LDA": '01001', "CMP_LS": "01011", "SHL": '01100',
-    "SHR": '01101', "SET_H": '01110', "SET_L": '01111', "BEQ": '10000',
-    "JMP": '10001', "HLT": '10010', "LD_LUT_H": '10100', "LD_LUT_L": '10101'
+    "ORR":   '00000', "XOR_B": '00001', "XOR_G": '00010', "AND":      '00011', "STR":      '00100', 
+    "LDR":   '00101', "STA":   '00110', "LDA":   '00111', "LD_LUT_L": '01000', "LD_LUT_H": '01001', 
+    "SET_L": '01010', "SET_H": '01011', "CMP":   '01100', "CMP_LS":   '01101', "LSL":      '01110', 
+    "LSR":   '01111', "ADD":   '10000', "BEQ":   '10001', "JMP":      '10010', "HLT":      '10011'
 }
-
 
 # Define binary codes for each register
 REGS = {
-    "R0": '0000', "R1": '0001', "R2": '0010', "R3": '0011',
-    "R4": '0100', "R5": '0101', "R6": '0110', "R7": '0111',
-    "R8": '1000', "R9": '1001', "R10": '1010', "R11": '1011',
+    "R0":  '0000', "R1":  '0001', "R2":  '0010', "R3":  '0011',
+    "R4":  '0100', "R5":  '0101', "R6":  '0110', "R7":  '0111',
+    "R8":  '1000', "R9":  '1001', "R10": '1010', "R11": '1011',
     "R12": '1100', "R13": '1101', "R14": '1110', "R15": '1111'
 }
 
@@ -23,13 +20,9 @@ REGS = {
 # Define illegal tokens that should be ignored during parsing
 ILLEGAL_TOKENS = {"//", "/*", "*/", "*", "#"}
 
-
 # Define file names for assembly programs and machine code programs
 ASSEMBLY_PROGS = ['encoder.s', 'decoder.s', 'pattern_match.s']
 MACHINE_PROGS = ['machinecode_1.txt', 'machinecode_2.txt', 'machinecode_3.txt']
-
-
-
 
 def parse_instruction(instruction):
     """
@@ -45,12 +38,7 @@ def parse_instruction(instruction):
         elif token[0] == "R":
             result.remove(token)
             result.append(REGS[token])
-
-
     return result
-
-
-
 
 def assemble_program(program_idx=0):
     """
@@ -82,7 +70,6 @@ def assemble_program(program_idx=0):
 
     except FileNotFoundError:
         print("")
-
 
 # Assemble each program in the list of assembly programs
 for i in range(3):

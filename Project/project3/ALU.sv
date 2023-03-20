@@ -1,12 +1,8 @@
-// Module Name:    ALU
-// Project Name:   CSE141L
-//
-// Additional Comments:
-//   combinational (unclocked) ALU
-
-//includes package "Definitions"
 import Definitions::*;
 
+// Parameters:
+//  W: length of data input
+//  Ops: length of ALU opcode
 module ALU #(parameter W=8, Ops=5)(
   input        [W-1:0]   InputA,       // Data inputs
                          InputB,
@@ -19,18 +15,18 @@ module ALU #(parameter W=8, Ops=5)(
 op_mne op_mnemonic;
 
 always_comb begin
-  Out = 0; // No Op = default
+  Out = 0; // Nop = default
   case(OP)
-    AND   :  Out = InputA & InputB;      // (0 ) bitwise AND
-    ORR   :  Out = InputA | InputB;      // (1 ) bitwise OR
-    XOR_B :  Out = InputA ^ InputB;      // (2 ) bitwise XOR
-    XOR_G :  Out = ^InputA;              // (3 ) global (reduction) XOR
-    ADD   :  Out = InputA + InputB;      // (4 ) add 
-    CMP   :  Out = InputA == InputB;     // (7 ) comparison
-	  CMP_LS:  Out = InputA < InputB;
-    SHL   :  Out = {InputA[6:0], 1'b0};  // (12) logical shift left
-    SHR   :  Out = {1'b0, InputA[7:1]};  // (13) logical shift right
-    default: Out = 8'bxxxx_xxxx;       // Quickly flag illegal ALU Op
+    ORR   :  Out = InputA | InputB;      // ( 0) bitwise OR
+    XOR_B :  Out = InputA ^ InputB;      // ( 2) bitwise XOR
+    XOR_G :  Out = ^InputA;              // ( 3) global (parity) XOR
+    AND   :  Out = InputA & InputB;      // ( 4) bitwise AND
+    CMP   :  Out = InputA == InputB;     // (12) comparison
+	  CMP_LS:  Out = InputA < InputB;      // (13) < comparison
+    LSL   :  Out = {InputA[6:0], 1'b0};  // (14) logical shift left
+    LSR   :  Out = {1'b0, InputA[7:1]};  // (15) logical shift right
+    ADD   :  Out = InputA + InputB;      // (16) add
+    default: Out = 8'bxxxx_xxxx;         // Quickly flag illegal ALU Op
   endcase
 end
 
