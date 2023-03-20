@@ -7,11 +7,10 @@ module InstROM #(parameter A=10, W=9) (
   output logic [W-1:0] InstOut
 );
 
-
-// Declare 2-dimensional array, W bits wide, 2**A words deep
+// Instruction memory is a 2D array, W bits wide, 2**A words deep
 logic [W-1:0] inst_rom[2**A];
 
-// This is where memory is read
+// Next instruction to be executed
 always_comb InstOut = inst_rom[InstAddress];
 
 // And this runs once during initalization to load instruction memory from
@@ -28,6 +27,5 @@ initial begin
   // try this on your machine most likely:
   $readmemb("//vmware-host/Shared Folders/Downloads/basic_proc2/machine_code.txt", inst_rom);
 end
-
 
 endmodule
