@@ -1,31 +1,3 @@
-/* Our RISC9 ISA supports 16 registers:
-    $acc0, $acc1: General puporse registers
-    $PC: Program counter (not explicitly referenced in following assembly code)
-        NOTE: PC is 0-indexed
-    R0-R12: General purpose registers
-
-    TODO: Update *all shift instructions* with new ISA design
- */
-
-/* Input Message:  FIXME: Wrong bits are [P8, P2, P16, b11, b10]
-    LSB: MEM[0]/R0  index   8   9   10  11  12  13  14  15
-                            -------------------------------
-                            b8  b7  b6  b5  b4  b3  b2  b1     0101_0101
-    ======================================================
-    MSB: MEM[1]/R1  index   0   1   2   3   4   5   6   7
-                            -------------------------------
-                            0   0   0   0   0   b11 b10 b9     0000_0101  
- 
-   Output Message:
-    LSB: MEM[30]/R11  index  8   9   10  11  12  13  14  15
-                            -------------------------------
-                            b4  b3  b2 [P4] b1 [P2][P1][P16]    #FIXME: P[2], P[16] incorrect
-    =======================================================
-    MSB: MEM[31]/R12  index  0   1   2   3   4   5   6   7
-                            -------------------------------
-                            b11 b10 b9  b8  b7  b6  b5 [P8]
- */
-
 // 0.0 Populate R13 and R14 to store Data Mem Addresses
     SET_H 0000  //1
     SET_L 0000  //2
@@ -84,10 +56,10 @@
     XOR_G R2    # R2 = ^(R2[7:0]) = ^(b8, b4, b3, b2)
     LDA R2          # acc = R2 = ^(b8, b4, b3, b2)
     XOR_B R3    # R3 = R3 ^ acc = ^(b11, b10, b9, b8, b4, b3, b2) = 0 0 0 0 | 0 0 0 [P4]
-    SHL R3 
-    SHL R3 
-    SHL R3 
-    SHL R3      # R3 = R3 << 4 = 0 0 0 [P4] | 0 0 0 0 
+    LSL R3 
+    LSL R3 
+    LSL R3 
+    LSL R3      # R3 = R3 << 4 = 0 0 0 [P4] | 0 0 0 0 
     LDA R3         # acc = R3 = 0 0 0 [P4] | 0 0 0 0 
     ORR R11     # R11 = R11 ^ acc = 0 0 0 [P4] | 0 0 0 0        Corretc up to now
 
@@ -113,8 +85,8 @@
     SET_H 0000
     SET_L 0001      # acc = 0000_0001 (mask to extract R3 last bit)
     AND R3          # extract last bit of R3
-    SHL R3
-    SHL R3      # R3 = R3 << 2 = 0 0 0 0 | 0 [P2] 0 0
+    LSL R3
+    LSL R3      # R3 = R3 << 2 = 0 0 0 0 | 0 [P2] 0 0
     LDA R3         # acc = R3 = 0 0 0 0 | 0 [P2] 0 0
     ORR R11     # R11 = R11 ^ acc = 0 0 0 [P4] | 0 [P2] 0 0 
     
@@ -135,7 +107,7 @@
     
     LDA R2          # acc = R2 = ^(b7, b5, b4, b2, b1)
     XOR_B R3    # R3 = R3 ^ acc =  ^(b11,b9)^(b7, b5, b4, b2, b1) = 0 0 0 0 | 0 0 0 P[1]
-    SHL R3      # R3 = R3 << 1 = 0 0 0 0 | 0 0 P[1] 0
+    LSL R3      # R3 = R3 << 1 = 0 0 0 0 | 0 0 P[1] 0
     LDA R3          # acc = R3 = 0 0 0 0 | 0 0 P[1] 0
     ORR R11     # R11 = R11 ^ acc = 0 0 0 [P4] | 0 [P2] P[1] 0 
     
@@ -161,11 +133,11 @@
     ORR R11     # R11 = R11 ^ acc = 0 0 0 [P4] | 0 [P2] [P1] [P16] 
     
 // 2.6 Construct R11, R12       // R12 =  0 0 0 0  | 0 0 0 P8;  R11 =  0 0 0 P4 | 0 P2 P1 P16
-    SHL R1
-    SHL R1
-    SHL R1
-    SHL R1
-    SHL R1      # R1 = R1 << 5 = b11 b10 b9 0   0 0 0 0
+    LSL R1
+    LSL R1
+    LSL R1
+    LSL R1
+    LSL R1      # R1 = R1 << 5 = b11 b10 b9 0   0 0 0 0
     LDA R1          # acc = R1 = b11 b10 b9 0   0 0 0 0
     ORR R12     # R12 = R12 | acc = b11 b10 b9 0 | 0 0 0 P8
 
@@ -174,9 +146,9 @@
     SET_H 1111     # acc = 1111_XXXX
     SET_L 0000     # acc = 1111_XXXX (mask to extract b8:b5)
     AND R2      # R2 = R2 ^ acc = b8 b7 b6 b5 | 0 0 0 0
-    SHR R2
-    SHR R2
-    SHR R2      # R2 = R2 >> 3 = 0 0 0 b8 | b7 b6 b5 0
+    LSR R2
+    LSR R2
+    LSR R2      # R2 = R2 >> 3 = 0 0 0 b8 | b7 b6 b5 0
     LDA R2          # acc = R2 = 0 0 0 b8 | b7 b6 b5 0
     ORR R12     # R12 = R12 | acc = b11 b10 b9 b8 | b7 b6 b5 P8     
 
@@ -185,19 +157,19 @@
     SET_H 0000     # acc = 0000_XXXX
     SET_L 1110     # acc = 0000_1110 (mask to extract b4:b2)
     AND R2      # R2 = R2 ^ acc = 0 0 0 0 | b4 b3 b2 0
-    SHL R2
-    SHL R2
-    SHL R2
-    SHL R2      # R2 = R2 << 4 = b4 b3 b2 0 | 0 0 0 0
+    LSL R2
+    LSL R2
+    LSL R2
+    LSL R2      # R2 = R2 << 4 = b4 b3 b2 0 | 0 0 0 0
     LDA R2          # acc = R2 = b4 b3 b2 0 | 0 0 0 0
     ORR R11     # R11 = b4 b3 b2 P4 | 0 P2 P1 P16
     
     SET_H 0000     # acc = 0000_XXXX
     SET_L 0001     # acc = 0000_0001 (mask to extrac b1)  
     AND R0      # R0 = R0 & acc = 0 0 0 0 | 0 0 0 b1
-    SHL R0
-    SHL R0
-    SHL R0      # R0 = R0 << 3 = 0 0 0 0 | b1 0 0 0     
+    LSL R0
+    LSL R0
+    LSL R0      # R0 = R0 << 3 = 0 0 0 0 | b1 0 0 0     
     LDA R0          # acc = R0 = 0 0 0 0 | b1 0 0 0  
     ORR R11     # R11 = b4 b3 b2 P4 | b1 P2 P1 P16
 

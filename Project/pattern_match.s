@@ -108,7 +108,7 @@ STA R6                              // k = 0 before looping
 LDA R8                              // K_1_Loop:   set accum to shiftoffset
 CMP R6                              // 
 BEQ 1000                            // if equal branch to K_1_Loop_Done:
-SHL R13                             // leftPart = leftPart << 1;
+LSL R13                             // leftPart = leftPart << 1;
 SET_H 0000
 SET_L 0001
 ADD R6                              // k = k + 1
@@ -243,7 +243,7 @@ STA R6                              // K = 0
 LDA R8                              // K_2_left_Loop:
 CMP R6
 BEQ 1000                            // if equal branch to K_2_Left_Loop_Done:
-SHL R13                             // leftPart = leftPart << 1;
+LSL R13                             // leftPart = leftPart << 1;
 SET_H 0000
 SET_L 0001
 ADD R6                              // k = k + 1
@@ -264,7 +264,7 @@ SET_H 0000                          // K_2_Right_Loop:
 SET_L 1000
 CMP R6
 BEQ 1000
-SHR R14                             // rightPart = rightPart >> 1;
+LSR R14                             // rightPart = rightPart >> 1;
 SET_H 0000
 SET_L 0001
 ADD R6                              // k = k + 1
@@ -302,7 +302,7 @@ STA R6                              // k = 3
 LDA R8                              // K_2_LeftChop_Loop:
 CMP R6
 BEQ 1010                            // brnach to K_2_LeftChop_Loop_Done: if equal
-SHL R11                             // leftChopValue = leftChopValue << 1;
+LSL R11                             // leftChopValue = leftChopValue << 1;
 SET_H 0000
 SET_L 0001 
 ADD R6                              // k = k + 1

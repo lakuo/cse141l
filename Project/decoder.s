@@ -33,28 +33,28 @@ STA R10                             // R10 = R2;
 SET_H 0000
 SET_L 0001
 AND R10                             // R10 = R10 & 0b00000001;
-SHL R10
-SHL R10
-SHL R10                             // R10 = R10 << 3;
+LSL R10
+LSL R10
+LSL R10                             // R10 = R10 << 3;
 LDA R1
 STA R11                             // R11 = R1;
 SET_H 0001
 SET_L 0000
 AND R11                             // R11 = R11 & 0b00010000;
-SHR R11
-SHR R11                             // R11 = R11 >> 2;
+LSR R11
+LSR R11                             // R11 = R11 >> 2;
 LDA R1
 STA R12                             // R12 = R1;
 SET_H 0000
 SET_L 0100
 AND R12                             // R12 = R12 & 0b00000100;
-SHR R12                             // R12 = R12 >> 1;
+LSR R12                             // R12 = R12 >> 1;
 LDA R1
 STA R13                             // R13 = R1;
 SET_H 0000
 SET_L 0010
 AND R13                             // R13 = R13 & 0b00000010;
-SHR R13                             // R13 = R13 >> 1;
+LSR R13                             // R13 = R13 >> 1;
 LDA R11
 ORR R10                             // R10 = R10 | R11;
 LDA R12 
@@ -127,12 +127,12 @@ XOR_B R15                            // R15 = R15 + R14;
 XOR_G R15                           // R15 = ^(R15);
 LDA R15
 STA R13                             // R13 = R15;
-SHL R10
-SHL R10
-SHL R10                             // R10 << 3;
-SHL R11
-SHL R11                             // R11 << 2;
-SHL R12                             // R12 << 1;
+LSL R10
+LSL R10
+LSL R10                             // R10 << 3;
+LSL R11
+LSL R11                             // R11 << 2;
+LSL R12                             // R12 << 1;
 LDA R11
 ORR R10                             // R10 = R10 | R11;
 LDA R12
@@ -269,7 +269,7 @@ STA R9                              // set j to 0 before looping
 LDA R7                              // 1_shifting_loop:
 CMP R9                              // for(j = 0; j < R7; j++)
 BEQ 1010                            // if equal to R7, branch to 1_shifting_loop_Done:
-SHL R15                             // R15 << 1;
+LSL R15                             // R15 << 1;
 SET_H 0000
 SET_L 0001
 ADD R9                              //  j = j + 1
@@ -293,7 +293,7 @@ STA R9                              // set j to 8 before looping
 LDA R7                              // 2_shifting_loop:
 CMP R9                              // for(j = 8; j < R7; j++)
 BEQ 1010                            // if equal to R7, branch to 2_shifting_loop_Done:
-SHL R15                             // R15 << 1;
+LSL R15                             // R15 << 1;
 SET_H 0000
 SET_L 0001              
 ADD R9                              // j = j + 1
@@ -304,26 +304,26 @@ JMP 1000                            // finished, branch to If_R7_8_Done:
 JMP 0100                            // If_R7_8_Done:   branch to If_P0_Done:
 LDA R2                              // If_P0_Done:
 STA R13                             // R13 = R2;
-SHL R13
-SHL R13
-SHL R13                             // R13 << 3;
+LSL R13
+LSL R13
+LSL R13                             // R13 << 3;
 SET_H 1111
 SET_L 0000
 AND R13                             // R13 = R13 & 0b11110000;
 LDA R1
 STA R14                             // R14 = R1;
-SHR R14
-SHR R14
-SHR R14
-SHR R14                             // R14 = R14 >> 4;
+LSR R14
+LSR R14
+LSR R14
+LSR R14                             // R14 = R14 >> 4;
 SET_H 0000
 SET_L 1110
 AND R14                             // R14 = R14 & 0b00001110;
 LDA R1
 STA R15                             // R15 = R1;
-SHR R15
-SHR R15
-SHR R15                             // R15 = R15 >> 3;
+LSR R15
+LSR R15
+LSR R15                             // R15 = R15 >> 3;
 SET_H 0000
 SET_L 0001                          // R15 = R15 & 0b00000001;
 AND R15
@@ -335,11 +335,11 @@ LDA R15
 ORR R10                             // R10 = R10 | R15;
 LDA R2
 STA R11                             // R11 = R2;
-SHR R11
-SHR R11
-SHR R11
-SHR R11
-SHR R11                             // R11 = R11 >> 5;
+LSR R11
+LSR R11
+LSR R11
+LSR R11
+LSR R11                             // R11 = R11 >> 5;
 SET_H 0000
 SET_L 0111
 AND R11                             // R11 = R11 & 0b00000111;
