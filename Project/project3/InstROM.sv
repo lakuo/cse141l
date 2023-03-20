@@ -20,12 +20,12 @@ initial begin
   //       e.g. Questa needs the file in path of the application .exe,
   //       it doesn't care where you project code is
   // Include absolute path here
-  //$readmemb("./machinecode.txt",inst_rom);
+  // $readmemb("./machinecode.txt",inst_rom);
   
   // So you are probably better off with an absolute path,
   // but you will have to change this example path when you
   // try this on your machine most likely:
-  $readmemb("//vmware-host/Shared Folders/Downloads/basic_proc2/machine_code.txt", inst_rom);
+  // $readmemb("//vmware-host/Shared Folders/Downloads/basic_proc2/machine_code.txt", inst_rom);
 end
 
 endmodule

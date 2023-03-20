@@ -39,7 +39,7 @@ always_ff @ (posedge clk) begin
       // Accumulator input case
       3'b010, 3'b011: Registers[address] <= Acc_Input;
       // Memory input case
-      default:        Registers[address] <= Mem_input;
+      default:        Registers[address] <= Mem_Input;
     endcase
 	//   if(from_ALU) begin
 	//     Registers[address] <= ALU_Input;
