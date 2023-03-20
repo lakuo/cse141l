@@ -25,21 +25,15 @@ ILLEGAL_TOKENS = {"//", "/*", "*/", "*", "#"}
 
 
 # Define file names for assembly programs and machine code programs
-ASSEMBLY_PROGS = ['1_fec_encode.s', '2_fec_decode.s', '3_pattern_match.s']
-MACHINE_PROGS = ['prog1_machine.txt', 'prog2_machine.txt', 'prog3_machine.txt']
+ASSEMBLY_PROGS = ['encoder.s', 'decoder.s', 'pattern_match.s']
+MACHINE_PROGS = ['machinecode_1.txt', 'machinecode_2.txt', 'machinecode_3.txt']
+
+
 
 
 def parse_instruction(instruction):
     """
     Parse an assembly instruction and replace register names with binary codes.
-
-
-    Args:
-        instruction (list): A list of tokens from an assembly instruction.
-
-
-    Returns:
-        list: A list containing the parsed assembly instruction.
     """
     result = instruction[:2]
 
@@ -56,24 +50,19 @@ def parse_instruction(instruction):
     return result
 
 
+
+
 def assemble_program(program_idx=0):
     """
     Assemble a program by converting assembly code to machine code.
-
-
-    Args:
-        program_idx (int, optional): Index of the program to assemble. Defaults to 0.
     """
     try:
         with open(os.path.join(os.path.dirname(__file__), ASSEMBLY_PROGS[program_idx]), "r") as assembly_code, \
              open(os.path.join(os.path.dirname(__file__), MACHINE_PROGS[program_idx]), "w") as machine_code:
 
 
-            # Process each line of assembly code
             for line in assembly_code:
                 instruction = line.split()
-                
-                # Ignore empty or invalid lines
                 if not instruction or instruction[0] in ILLEGAL_TOKENS or instruction[0] not in OPS:
                     continue
 
@@ -81,22 +70,20 @@ def assemble_program(program_idx=0):
                 parsed_instruction = parse_instruction(instruction)
 
 
-                # Convert parsed assembly instruction to machine code
                 if len(parsed_instruction) == 2:
                     machine_line = OPS[parsed_instruction[0]] + parsed_instruction[1]
                 else:
                     machine_line = OPS[parsed_instruction[0]] + '0000'
 
 
-                # Write machine code to the output file
-            machine_line += "\n"
-            machine_code.write(machine_line)
+                machine_line += "\n"
+                machine_code.write(machine_line)
 
 
-except FileNotFoundError:
-    print("File not found.")
+    except FileNotFoundError:
+        print("")
 
 
-#Assemble each program in the list of assembly programs
+# Assemble each program in the list of assembly programs
 for i in range(3):
     assemble_program(i)
