@@ -1,36 +1,38 @@
-// 0.0 Populate R13 and R14 to store Data Mem Addresses
-    SET_H 0000  //1
-    SET_L 0000  //2
-    STA R13     //3     # R13 = 0
-    SET_H 0001  //4
-    SET_L 1110  //5     
-    STA R14     //6     # R14 = 30 = 0001_1110
+// Store "target" line into LUT
+// This marks the beginning of the execution of the program
+    SET_H 0000
+    SET_L 1001     # acc = 10
+    LD_LUT_L 0000  # LUT[0] = acc
 
-    // 0.1 Store "target" line into LUT
-    SET_H 0000      //7
-    SET_L 1001      //8         # acc = 10
-    LD_LUT_L 0000   //9  # LUT[0] = acc
+// Make R13 and R14 read and write pointers respectively
+    SET_H 0000
+    SET_L 0000
+    STA R13        # R13 = 0
+    SET_H 0001
+    SET_L 1110
+    STA R14        # R14 = 30
 
-// 1. Load MEM[1] and MEM[0] into R1, R0, respectively    # TODO: Function entry point (Target1)
-    LDA R13   //10      # acc = R13 = 0
-    LDR R0      # R1 = MEM[acc] = MEM[0]
+// Beginning of computation
+// Load MEM[0] and MEM[1] into R0 and R1
+    LDA R13        # acc = R13 = 0
+    LDR R0         # R1 = MEM[acc] = MEM[0] = b8 b7 b6 b5 b4 b3 b2 b1
+    SET_H 0000
+    SET_L 0001     # acc = 1 (Used to index MEM[1])
+    ADD R13        # R13 += acc => R13 += 1 => R13 = 1
+    LDA R13        # acc = R13 = 1
+    LDR R1         # R1 = MEM[acc] = MEM[1] = 0 0 0 0  0 b11 b10 b9
+
+                   # R11 is reserved for writing to MEM[30]
+                   # R12 is reserved for writing to MEM[31]
     SET_H 0000                                            
-    SET_L 0001      # acc = 1 (Used to index MEM[1])
-    ADD R13     # R13 += 1 = 1
-    LDA R13         # acc = R13 = 1
-    LDR R1      # R1 = MEM[acc] = MEM[1] = 0 0 0 0  0 b11 b10 b9
+    SET_L 0001     # acc = 1 (Used to index MEM[1])
+    ADD R13        # R13 += 1 = 2      Now R13 addr is ready to use in the next iter
 
-                # R12 is reserved for writing to MEM[31]
-                # R11 is reserved for writing to MEM[30]
-    SET_H 0000                                            
-    SET_L 0001      # acc = 1 (Used to index MEM[1])
-    ADD R13     # R13 += 1 = 2      Now R13 addr is ready to use in the next iter.  // Fine up to this point
-
-// 2.1 Compute P8 = ^(b11:b5)
-    LDA R1          # acc = R1 = MEM[1]         ok
-    STA R3      # R3 = acc = R1 = MEM[1] = 0 0 0 0  0 b11 b10 b9   = 0000_0111 ok
-    LDA R0          # acc = R0 = MEM[0] 
-    STA R2      # R2 = acc = R0 = MEM[0] = b8 b7 b6 b5  b4 b3 b2 b1 = 0101_0101 ok
+// Compute P8 = ^(b11:b5)
+    LDA R1         # acc = R1 = MEM[1]         ok
+    STA R3         # R3 = acc = R1 = MEM[1] = 0 0 0 0  0 b11 b10 b9   = 0000_0111 ok
+    LDA R0         # acc = R0 = MEM[0] 
+    STA R2         # R2 = acc = R0 = MEM[0] = b8 b7 b6 b5  b4 b3 b2 b1 = 0101_0101 ok
     
     XOR_G R3    # R3 = ^(R3[7:0]) = ^(b11, b10, b9) = 0000_0001    ok
     SET_H 1111      # acc = 1111_xxxx
