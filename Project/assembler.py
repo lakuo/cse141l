@@ -30,7 +30,6 @@ def parse_instruction(instruction):
     """
     result = instruction[:2]
 
-
     for token in result:
         token = token.strip(',')
         if token[0] in ILLEGAL_TOKENS:
@@ -45,31 +44,30 @@ def assemble_program(program_idx=0):
     Assemble a program by converting assembly code to machine code.
     """
     try:
-        with open(os.path.join(os.path.dirname(__file__), ASSEMBLY_PROGS[program_idx]), "r") as assembly_code, \
-             open(os.path.join(os.path.dirname(__file__), MACHINE_PROGS[program_idx]), "w") as machine_code:
+        with open(os.path.join(os.path.dirname(__file__), ASSEMBLY_PROGS[program_idx]), "r", encoding="utf-8") as assembly_code, \
+     open(os.path.join(os.path.dirname(__file__), MACHINE_PROGS[program_idx]), "w") as machine_code:
 
-
+            print(f"Assembling program {program_idx + 1}:")
             for line in assembly_code:
                 instruction = line.split()
                 if not instruction or instruction[0] in ILLEGAL_TOKENS or instruction[0] not in OPS:
                     continue
 
-
+                print(f"Assembly instruction: {instruction}")
                 parsed_instruction = parse_instruction(instruction)
-
+                print(f"Parsed instruction: {parsed_instruction}")
 
                 if len(parsed_instruction) == 2:
                     machine_line = OPS[parsed_instruction[0]] + parsed_instruction[1]
                 else:
                     machine_line = OPS[parsed_instruction[0]] + '0000'
 
-
+                print(f"Machine code: {machine_line}\n")
                 machine_line += "\n"
                 machine_code.write(machine_line)
 
-
     except FileNotFoundError:
-        print("")
+        print(f"Error: Assembly program {program_idx + 1} not found.")
 
 # Assemble each program in the list of assembly programs
 for i in range(3):

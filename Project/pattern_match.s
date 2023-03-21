@@ -1,4 +1,3 @@
-
 SET_H 0010
 SET_L 0000
 STA R0                        //patternIndex R0 ＝ 32
