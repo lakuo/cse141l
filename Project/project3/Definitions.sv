@@ -19,6 +19,6 @@ package Definitions;
           ADD,        // 5'b10000 (16)
           BEQ,        // 5'b10001 (17)
           JMP,        // 5'b10010 (18)
-          HLT,        // 5'b10011 (19)
+          HLT         // 5'b10011 (19)
    } op_mne;
 endpackage // Definitions
