@@ -38,8 +38,8 @@ always_comb begin
     ORR:        begin ALU_Opcode = 5'b00000;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     XOR_B:      begin ALU_Opcode = 5'b00001;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     XOR_G:      begin ALU_Opcode = 5'b00010;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
-    AND:        begin ALU_Opcode = 5'b00100;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
-    CMP:        begin ALU_Opcode = 5'b00111;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
+    AND:        begin ALU_Opcode = 5'b00011;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
+    CMP:        begin ALU_Opcode = 5'b01100;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
 	  CMP_LS:     begin ALU_Opcode = 5'b01101;          Acc_Write_En = 1;  Acc_From_ALU = 1;  end
     LSL:        begin ALU_Opcode = 5'b01110;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end
     LSR:        begin ALU_Opcode = 5'b01111;          Reg_Write_En = 1;  Reg_From_ALU = 1;  end

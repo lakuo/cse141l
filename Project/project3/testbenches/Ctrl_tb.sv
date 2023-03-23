@@ -39,13 +39,12 @@ module Ctrl_tb();
 
     // Test all possible instructions
     for (i = 0; i < 32; i++) begin // Only iterate over the tested bits
-      Instruction = {Instruction[8:5], i, Instruction[3:0]}; // Set the current test value
+      Instruction = {i, 4'b0000}; // Set the current test value
       AccInput = $random;
       #10;
 
-      if (Instruction[8:4] !== prev_bits) begin // Check if the tested bits have changed
-        $display("Tested bits changed: %b", Instruction[8:4]); // Display the changed bits
-      end
+      $display("Instruction: %b", Instruction[8:4])
+      $display("Opcode: %b", op_mnemonic)
 
       prev_bits = Instruction[8:4]; // Update the previous value
     end
