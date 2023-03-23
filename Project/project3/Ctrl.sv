@@ -52,7 +52,7 @@ always_comb begin
     SET_L:      begin Acc_Load_Hi = 0;                Acc_Write_En = 1;  Acc_From_Imm = 1;  end
     LD_LUT_H:   begin LUT_Load_Hi = 1;                LUT_Write_En = 1;                     end
     LD_LUT_L:   begin LUT_Load_Hi = 0;                LUT_Write_En = 1;                     end
-    BEQ:        begin PC_Beq_Flag = AccInput == 8'b1; LUT_Read_En = 1;                      end 
+    BEQ:        begin PC_Beq_Flag = AccInput == 8'b1; LUT_Read_En = 1;                      end
     JMP:        begin PC_Jmp_Flag = 1;                LUT_Read_En = 1;                      end
     HLT:        begin Ack = 1;                                                              end
     default: zero_init_flags; 

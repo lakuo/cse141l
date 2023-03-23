@@ -33,14 +33,14 @@ LDA R3
 STR R12
 SET_H 1001
 SET_L 0001                   
-LUT_LOAD_L 0000                    
+LD_LUT_L 0000                    
 SET_L 0001
-LUT_LOAD_H 0000                      // LUT[0] load the address of Done: at line 401
+LD_LUT_H 0000                      // LUT[0] load the address of Done: at line 401
 SET_H 0010
 SET_L 1110   
-LUT_LOAD_L 0001                      
+LD_LUT_L 0001                      
 SET_L 0000
-LUT_LOAD_H 0001                     // LUT[1] load address of mem_block_for_loop: at line 46
+LD_LUT_H 0001                     // LUT[1] load address of mem_block_for_loop: at line 46
 SET_H 0000
 SET_L 0000
 STA R4                              // i = 0
@@ -52,19 +52,19 @@ SET_L 0000
 STA R7                              // set byte flag = 0
 SET_H 0100
 SET_L 1000
-LUT_LOAD_L 0010             
+LD_LUT_L 0010             
 SET_L 0000
-LUT_LOAD_H 0010                     // LUT[2] load the address of index_if_equal: at line 72
+LD_LUT_H 0010                     // LUT[2] load the address of index_if_equal: at line 72
 SET_H 1100
 SET_L 0101
-LUT_LOAD_L 0011
+LD_LUT_L 0011
 SET_L 0000
-LUT_LOAD_H 0011                     // LUT[3] load the address of index_if_not_equal: at line 197
+LD_LUT_H 0011                     // LUT[3] load the address of index_if_not_equal: at line 197
 SET_H 1000
 SET_L 1101
-LUT_LOAD_L 0100
+LD_LUT_L 0100
 SET_L 0001
-LUT_LOAD_H 0100                     // LUT[4] load the address of index_if_Done: at line 397
+LD_LUT_H 0100                     // LUT[4] load the address of index_if_Done: at line 397
 SET_H 0001
 SET_L 1111                          // set acc to last index 31
 CMP R4                              
@@ -72,14 +72,14 @@ BEQ 0010                            // if(i == lastIndex), brnach to index_if_eq
 JMP 0011                            // else brnach to the index_if_not_equal:
 SET_H 0101                         // index_if_equal:
 SET_L 0101
-LUT_LOAD_L 0101
+LD_LUT_L 0101
 SET_L 0000
-LUT_LOAD_H 0101                     // LUT[5] load the address of J_1_Loop: at line 85
+LD_LUT_H 0101                     // LUT[5] load the address of J_1_Loop: at line 85
 SET_H 1100          
 SET_L 0100
-LUT_LOAD_L 0110
+LD_LUT_L 0110
 SET_L 0000
-LUT_LOAD_H 0110                     // LUT[6] load the address of J_1_Loop_Done: at line 196
+LD_LUT_H 0110                     // LUT[6] load the address of J_1_Loop_Done: at line 196
 SET_H 0000
 SET_L 0000                          
 STA R5                              // j = 0 before looping
@@ -93,14 +93,14 @@ LDA R4
 LDR R13                             // leftPart = dataMem[i];
 SET_H 0110                        
 SET_L 1010
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0000
-LUT_LOAD_H 0111                     // LUT[7] load the address of K_1_Loop: at line 106
+LD_LUT_H 0111                     // LUT[7] load the address of K_1_Loop: at line 106
 SET_H 0111                           
 SET_L 0010
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0000
-LUT_LOAD_H 1000                     // LUT[8] load the address of K_1_Loop_Done: at line 114
+LD_LUT_H 1000                     // LUT[8] load the address of K_1_Loop_Done: at line 114
 SET_H 0000
 SET_L 0000
 STA R6                              // k = 0 before looping
@@ -119,14 +119,14 @@ LDA R13
 AND R15                             // checkTarget = leftPart & chopValue;
 SET_H 1000                               
 SET_L 1010
-LUT_LOAD_L 1001
+LD_LUT_L 1001
 SET_L 0000
-LUT_LOAD_H 1001                     // LUT[9] load the address of 1_check_if_equal: at line 138
+LD_LUT_H 1001                     // LUT[9] load the address of 1_check_if_equal: at line 138
 SET_H 1100                              
 SET_L 0000
-LUT_LOAD_L 1010
+LD_LUT_L 1010
 SET_L 0000
-LUT_LOAD_H 1010                     // LUT[10] load the address of 1_check_if_Done: at line 192
+LD_LUT_H 1010                     // LUT[10] load the address of 1_check_if_Done: at line 192
 LDA R15
 STA R12
 LDA R9
@@ -138,14 +138,14 @@ BEQ 1001                            // if equal branch to 1_check_if_equal
 JMP 1010                            // direct branch to 1_check_if_not_equal
 SET_H 1001                          // 1_check_if_equal:
 SET_L 1001
-LUT_LOAD_L 1011
+LD_LUT_L 1011
 SET_L 0000
-LUT_LOAD_H 1011                     // LUT[11] load the address of 1_1_if_equal: at line 153
+LD_LUT_H 1011                     // LUT[11] load the address of 1_1_if_equal: at line 153
 SET_H 1010                             
 SET_L 0000
-LUT_LOAD_L 1100
+LD_LUT_L 1100
 SET_L 0000
-LUT_LOAD_H 1100                     // LUT[12] load the address of 1_1_if_Done: at line 160
+LD_LUT_H 1100                     // LUT[12] load the address of 1_1_if_Done: at line 160
 SET_H 0000
 SET_L 0100                          // 4
 CMP_LS R8                           // if(shiftOffset < 4)
@@ -160,14 +160,14 @@ LDA R1
 STR R10                             // dataMem[numOccurIndex] = dataMem[numOccurIndex] + 0b00000001;
 SET_H 1010                          // 1_1_if_Done:
 SET_L 1111
-LUT_LOAD_L 1011
+LD_LUT_L 1011
 SET_L 0000
-LUT_LOAD_H 1011                     // LUT[11] load the address of 1_2_if_equal: at line 175
+LD_LUT_H 1011                     // LUT[11] load the address of 1_2_if_equal: at line 175
 SET_H 1011                              
 SET_L 1001
-LUT_LOAD_L 1100
+LD_LUT_L 1100
 SET_L 0000
-LUT_LOAD_H 1100                     // LUT[12] load the address of 1_2_if_Done: at line 185
+LD_LUT_H 1100                     // LUT[12] load the address of 1_2_if_Done: at line 185
 SET_H 0000
 SET_L 0000
 CMP R7                              // if(byteFlag == 0)
@@ -197,14 +197,14 @@ JMP 0101                            // branch back to J_1_Loop: for looping
 JMP 0100                            // J_1_Loop_Done: branch to index_if_Done:
 SET_H 1101                         // index_if_not_equal:
 SET_L 0010
-LUT_LOAD_L 0101
+LD_LUT_L 0101
 SET_L 0000
-LUT_LOAD_H 0101                     // LUT[5] load the address of J_2_Loop: at line 210
+LD_LUT_H 0101                     // LUT[5] load the address of J_2_Loop: at line 210
 SET_H 1000                              
 SET_L 1100
-LUT_LOAD_L 0110
+LD_LUT_L 0110
 SET_L 0001
-LUT_LOAD_H 0110                     // LUT[6] load the address of J_2_Loop_Done: at line 396
+LD_LUT_H 0110                     // LUT[6] load the address of J_2_Loop_Done: at line 396
 SET_H 0000
 SET_L 0000
 STA R5
@@ -228,14 +228,14 @@ SET_L 1000
 STA R11                             // leftChopValue = chopValue;
 SET_H 1111                             
 SET_L 0001
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0000
-LUT_LOAD_H 0111                     // LUT[7] load the address of K_2_left_Loop: at line 241
+LD_LUT_H 0111                     // LUT[7] load the address of K_2_left_Loop: at line 241
 SET_H 1111                               
 SET_L 1001
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0000
-LUT_LOAD_H 1000                     // LUT[8] load the address of K_2_Left_Loop_Done: at line 249
+LD_LUT_H 1000                     // LUT[8] load the address of K_2_Left_Loop_Done: at line 249
 SET_H 0000
 SET_L 0000
 STA R6                              // K = 0
@@ -249,14 +249,14 @@ ADD R6                              // k = k + 1
 JMP 0111                            // branch back to K_2_left_Loop: for looping
 SET_H 0000                          // K_2_Left_Loop_Done:
 SET_L 0101
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0001
-LUT_LOAD_H 0111                     // LUT[7] load the address of K_2_Right_Loop: at line 261
+LD_LUT_H 0111                     // LUT[7] load the address of K_2_Right_Loop: at line 261
 SET_H 0000                              
 SET_L 1110
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0001
-LUT_LOAD_H 1000                     // LUT[8] load the address of K_2_Right_Loop_Done: at line 270
+LD_LUT_H 1000                     // LUT[8] load the address of K_2_Right_Loop_Done: at line 270
 LDA R8
 STA R6                              // k = shiftOffset
 SET_H 0000                          // K_2_Right_Loop:
@@ -270,14 +270,14 @@ ADD R6                              // k = k + 1
 JMP 0111                            // branch back to K_2_Right_Loop: for looping
 SET_H 0001                          // K_2_Right_Loop_Done:
 SET_L 1111
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0001
-LUT_LOAD_H 0111                     // LUT[7] load the address of 2_LeftChop_If_Equal: at line 287
+LD_LUT_H 0111                     // LUT[7] load the address of 2_LeftChop_If_Equal: at line 287
 SET_H 0011                              
 SET_L 0101
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0001
-LUT_LOAD_H 1000                     // LUT[8] load the address of 2_LeftChop_If_Done: at line 309
+LD_LUT_H 1000                     // LUT[8] load the address of 2_LeftChop_If_Done: at line 309
 SET_H 0000                          
 SET_L 0011
 STA R12
@@ -287,14 +287,14 @@ BEQ 0111
 JMP 1000
 SET_H 0010                          // 2_LeftChop_If_Equal: 
 SET_L 1100
-LUT_LOAD_L 1001
+LD_LUT_L 1001
 SET_L 0001
-LUT_LOAD_H 1001                     // LUT[9] load the address of K_2_LeftChop_Loop: at line 300
+LD_LUT_H 1001                     // LUT[9] load the address of K_2_LeftChop_Loop: at line 300
 SET_H 0011                             
 SET_L 0100
-LUT_LOAD_L 1010
+LD_LUT_L 1010
 SET_L 0001
-LUT_LOAD_H 1010                     // LUT[10] load the address of K_2_LeftChop_Loop_Done: at line 308
+LD_LUT_H 1010                     // LUT[10] load the address of K_2_LeftChop_Loop_Done: at line 308
 SET_H 0000
 SET_L 0011
 STA R6                              // k = 3
@@ -318,14 +318,14 @@ LDA R14
 ORR R15                           // checkTarget = leftPart | rightPart;
 SET_H 0101                            
 SET_L 0001
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0001
-LUT_LOAD_H 0111                     // LUT[7] load the address of 2_Check_If_Equal: at line 337
+LD_LUT_H 0111                     // LUT[7] load the address of 2_Check_If_Equal: at line 337
 SET_H 1000                             
 SET_L 1000
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0001
-LUT_LOAD_H 1000                     // LUT[8] load the address of 2_Check_If_Done: at line 392
+LD_LUT_H 1000                     // LUT[8] load the address of 2_Check_If_Done: at line 392
 LDA R9
 STA R12
 LDA R15
@@ -337,14 +337,14 @@ BEQ 0111                            // If equal, branch to 2_Check_If_Equal:
 JMP 1000                            // else branch to 2_Check_If_Done:
 SET_H 0110                          // 2_Check_If_Equal:              
 SET_L 0000
-LUT_LOAD_L 1001
+LD_LUT_L 1001
 SET_L 0001
-LUT_LOAD_H 1001                     // LUT[9] load the address of 2_1_If_Equal: at line 352
+LD_LUT_H 1001                     // LUT[9] load the address of 2_1_If_Equal: at line 352
 SET_H 1000                           
 SET_L 0001
-LUT_LOAD_L 1010
+LD_LUT_L 1010
 SET_L 0001
-LUT_LOAD_H 1010                     // LUT[10] load the address of 2_1_If_Done: at line 385
+LD_LUT_H 1010                     // LUT[10] load the address of 2_1_If_Done: at line 385
 SET_H 0000
 SET_L 0100
 CMP_LS R8
@@ -359,14 +359,14 @@ LDA R1
 STR R10                             // dataMem[numOccurIndex] = dataMem[numOccurIndex] + 0b00000001;
 SET_H 0111                                     
 SET_L 0110
-LUT_LOAD_L 1011
+LD_LUT_L 1011
 SET_L 0001
-LUT_LOAD_H 1011                     // LUT[11] load the address of 2_2_If_Equal: at line 374
+LD_LUT_H 1011                     // LUT[11] load the address of 2_2_If_Equal: at line 374
 SET_H 1000                              
 SET_L 0000
-LUT_LOAD_L 1100
+LD_LUT_L 1100
 SET_L 0001
-LUT_LOAD_H 1100                     // LUT[12] load the address of 2_2_If_Done: at line 384
+LD_LUT_H 1100                     // LUT[12] load the address of 2_2_If_Done: at line 384
 SET_H 0000
 SET_L 0000
 CMP R7

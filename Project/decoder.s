@@ -1,14 +1,14 @@
 
 SET_H 0000
 SET_L 1101               
-LUT_LOAD_L 0000                    
+LD_LUT_L 0000                    
 SET_L 0000
-LUT_LOAD_H 0000                      // LUT[0] load the address of mem_block_for_loop: at line 13   
+LD_LUT_H 0000                      // LUT[0] load the address of mem_block_for_loop: at line 13   
 SET_H 0111
 SET_L 0111             
-LUT_LOAD_L 0001                      
+LD_LUT_L 0001                      
 SET_L 0001
-LUT_LOAD_H 0001                     // LUT[1] load address of Done: at line 375
+LD_LUT_H 0001                     // LUT[1] load address of Done: at line 375
 SET_H 0000
 SET_L 0000
 STA R0                              // i = 0 before loop
@@ -165,24 +165,24 @@ LDA R6
 XOR_B R8                            // R8 = R8 ^ R6;
 SET_H 1100
 SET_L 0000
-LUT_LOAD_L 0010                         
+LD_LUT_L 0010                         
 SET_L 0000
-LUT_LOAD_H 0010                     // LUT[2] load the address of If_P0_equal: at line 192 
+LD_LUT_H 0010                     // LUT[2] load the address of If_P0_equal: at line 192 
 SET_H 1110
 SET_L 0110
-LUT_LOAD_L 0011
+LD_LUT_L 0011
 SET_L 0000
-LUT_LOAD_H 0011                     // LUT[3] load the address of If_P0_not_equal: at line 230
+LD_LUT_H 0011                     // LUT[3] load the address of If_P0_not_equal: at line 230
 SET_H 0010
 SET_L 1111
-LUT_LOAD_L 0100
+LD_LUT_L 0100
 SET_L 0001
-LUT_LOAD_H 0100                     // LUT[4] load the address of If_P0_Done: at line 303
+LD_LUT_H 0100                     // LUT[4] load the address of If_P0_Done: at line 303
 SET_H 0111
 SET_L 0011
-LUT_LOAD_L 0101
+LD_LUT_L 0101
 SET_L 0001
-LUT_LOAD_H 0101                     // LUT[5] load the address of load_mem_Done: at line 371
+LD_LUT_H 0101                     // LUT[5] load the address of load_mem_Done: at line 371
 SET_H 0000
 SET_L 0000
 STA R12
@@ -193,19 +193,19 @@ BEQ 0010                            // If euqal to 0, branch to If_P0_equal:
 JMP 0011                            // else, branch to If_P0_not_equal:
 SET_H 1101                          //If_P0_equal:
 SET_L 0100
-LUT_LOAD_L 0110                         
+LD_LUT_L 0110                         
 SET_L 0000
-LUT_LOAD_H 0110                     // LUT[6] load the address of If_P8421_equal: at line 212  
+LD_LUT_H 0110                     // LUT[6] load the address of If_P8421_equal: at line 212  
 SET_H 1101
 SET_L 0101
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0000
-LUT_LOAD_H 0111                     // LUT[7] load the address of If_P8421_not_equal: at line 213 
+LD_LUT_H 0111                     // LUT[7] load the address of If_P8421_not_equal: at line 213 
 SET_H 1110
 SET_L 0101
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0000
-LUT_LOAD_H 1000                     // LUT[8] load the address of If_P8421_Done: at line 229
+LD_LUT_H 1000                     // LUT[8] load the address of If_P8421_Done: at line 229
 SET_H 0000
 SET_L 0000                          // set value to 0
 CMP R7                              // if(R7 == 0b00000000)
@@ -235,19 +235,19 @@ STA R15                             // R15 = 00000001;
 STA R12                             // R12 = 00000001;
 SET_H 1111                         
 SET_L 1110
-LUT_LOAD_L 0110                         
+LD_LUT_L 0110                         
 SET_L 0000
-LUT_LOAD_H 0110                     // LUT[6] load the address of If_R7_8_equal: at line 254
+LD_LUT_H 0110                     // LUT[6] load the address of If_R7_8_equal: at line 254
 SET_H 0001
 SET_L 0110
-LUT_LOAD_L 0111
+LD_LUT_L 0111
 SET_L 0001
-LUT_LOAD_H 0111                     // LUT[7] load the address of If_R7_8_not_equal: at line 278
+LD_LUT_H 0111                     // LUT[7] load the address of If_R7_8_not_equal: at line 278
 SET_H 0010
 SET_L 1110
-LUT_LOAD_L 1000
+LD_LUT_L 1000
 SET_L 0001
-LUT_LOAD_H 1000                     // LUT[8] load the address of If_R7_8_Done: at line 302
+LD_LUT_H 1000                     // LUT[8] load the address of If_R7_8_Done: at line 302
 SET_H 0000
 SET_L 1000                          // set value to 8
 CMP_LS R7                           // if(R7 < 8)
@@ -255,14 +255,14 @@ BEQ 0110                            // if equal, branch to If_R7_8_equal:
 JMP 0111                            // else, branch to If_R7_8_not_equal:
 SET_H 0000                          // If_R7_8_equal:
 SET_L 1011
-LUT_LOAD_L 1001                       
+LD_LUT_L 1001                       
 SET_L 0001
-LUT_LOAD_H 1001                     // LUT[9] load the address of 1_shifting_loop: at line 267  
+LD_LUT_H 1001                     // LUT[9] load the address of 1_shifting_loop: at line 267  
 SET_H 0001
 SET_L 0011
-LUT_LOAD_L 1010
+LD_LUT_L 1010
 SET_L 0001
-LUT_LOAD_H 1010                     // LUT[10] load the address of 1_shifting_loop_Done: at line 275
+LD_LUT_H 1010                     // LUT[10] load the address of 1_shifting_loop_Done: at line 275
 SET_H 0000
 SET_L 0000
 STA R9                              // set j to 0 before looping
@@ -279,14 +279,14 @@ XOR_B R1                            // R1 = R1 ^ R15;
 JMP 1000                            // finished, branch to If_R7_8_Done:
 SET_H 0010                          // If_R7_8_not_equal:
 SET_L 0011
-LUT_LOAD_L 1001                       
+LD_LUT_L 1001                       
 SET_L 0001
-LUT_LOAD_H 1001                     // LUT[9] load the address of 2_shifting_loop: at line 291   
+LD_LUT_H 1001                     // LUT[9] load the address of 2_shifting_loop: at line 291   
 SET_H 0010
 SET_L 1011
-LUT_LOAD_L 1010
+LD_LUT_L 1010
 SET_L 0001
-LUT_LOAD_H 1010                     // LUT[10] load the address of 2_shifting_loop_Done: at line 299
+LD_LUT_H 1010                     // LUT[10] load the address of 2_shifting_loop_Done: at line 299
 SET_H 0000
 SET_L 1000
 STA R9                              // set j to 8 before looping
@@ -345,14 +345,14 @@ SET_L 0111
 AND R11                             // R11 = R11 & 0b00000111;
 SET_H 0110
 SET_L 0111
-LUT_LOAD_L 1011
+LD_LUT_L 1011
 SET_L 0001
-LUT_LOAD_H 1011                     // LUT[11] load the address of If_Error_equal: at line 359
+LD_LUT_H 1011                     // LUT[11] load the address of If_Error_equal: at line 359
 SET_H 0110
 SET_L 1010
-LUT_LOAD_L 1100
+LD_LUT_L 1100
 SET_L 0001
-LUT_LOAD_H 1100                     // LUT[12] load the address of If_Error_equal_Done: at line 362
+LD_LUT_H 1100                     // LUT[12] load the address of If_Error_equal_Done: at line 362
 SET_H 0000
 SET_L 0001
 CMP R12                             // if(R12 == 0b00000001)
