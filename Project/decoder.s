@@ -1,11 +1,10 @@
-
 SET_H 0000
-SET_L 1101               
-LD_LUT_L 0000                    
+SET_L 1101
+LD_LUT_L 0000
 SET_L 0000
 LD_LUT_H 0000                      // LUT[0] load the address of mem_block_for_loop: at line 13   
 SET_H 0111
-SET_L 0111             
+SET_L 0111
 LD_LUT_L 0001                      
 SET_L 0001
 LD_LUT_H 0001                     // LUT[1] load address of Done: at line 375
